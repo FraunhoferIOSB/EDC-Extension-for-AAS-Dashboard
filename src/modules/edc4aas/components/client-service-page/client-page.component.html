@@ -16,7 +16,7 @@
             </mat-form-field>
             <mat-form-field>
               <mat-label>Provider name</mat-label>
-              <input [(ngModel)]="destinationUrl" matInput>
+              <input [(ngModel)]="providerName" matInput>
             </mat-form-field>
           </div>
           <div style="margin-top:auto; margin-bottom: 1.5em; margin-left: 1em;">
@@ -24,9 +24,11 @@
               Negotiate <mat-icon>cached</mat-icon>
             </button>
             <br>
+            <!--
             <button (click)="fetchProviderAcceptableContracts()" mat-raised-button>
               Show acceptable contracts for provider's asset
             </button>
+            -->
           </div>
         </div>
 
@@ -47,7 +49,7 @@
         <pre>{{providerAcceptableForAsset | json}}</pre>
       </mat-expansion-panel>
     </ng-container>
-
+    -->
     <ng-container *ngIf="showData">
       <button (click)="showData = false" mat-raised-button>Hide</button><br>
       <mat-expansion-panel>
@@ -57,7 +59,6 @@
         <pre>{{data | json}}</pre>
       </mat-expansion-panel>
     </ng-container>
-    -->
   </div>
   <div class="message-log">
     Message Log (new to old)

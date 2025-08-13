@@ -13,13 +13,14 @@ export class ClientService {
     this.clientUrl = new URL(provider.toString().concat("/automated"));
   }
 
-  public negotiateContractAndGetData(provider: URL, assetId: string, destination?: URL) {
+  public negotiateContractAndGetData(provider: URL, assetId: string, providerName?: String) {
     var requestUrl = new URL(this.clientUrl.toString().concat("/negotiate"));
     requestUrl.searchParams.append("providerUrl", provider.toString());
     requestUrl.searchParams.append("assetId", assetId);
-    if (destination)
-      requestUrl.searchParams.append("providerId", destination.toString());
-
+    if (providerName) {
+      requestUrl.searchParams.append("providerId", providerName.toString());
+    }
+    
     return this.httpClient.post<JSON>(requestUrl.toString(), null);
   }
 

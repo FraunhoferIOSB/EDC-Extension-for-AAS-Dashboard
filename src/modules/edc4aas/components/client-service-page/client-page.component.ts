@@ -11,7 +11,7 @@ export class ClientPageComponent implements OnInit {
 
   providerUrl?: URL;
   assetId?: string;
-  destinationUrl?: URL;
+  providerName?: String;
 
   data?: JSON;
 
@@ -33,10 +33,9 @@ export class ClientPageComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.providerUrl = "http://provider:8282"
-      this.providerUrl = new URL(this.providerUrl?.origin + "/dsp");
+      this.providerUrl = new URL("http://provider:8282/dsp");
       this.assetId = params['1'];
-      this.destinationUrl = "provider"
+      this.providerName = "provider"
       this.addLogMessage("Initialized with URL " + this.providerUrl + ", asset " + this.assetId);
     });
   }
@@ -47,10 +46,10 @@ export class ClientPageComponent implements OnInit {
       this.searching = true;
       console.log("HELLO WORLD")
       this.clientService
-        .negotiateContractAndGetData(this.providerUrl, this.assetId, this.destinationUrl).subscribe({
+        .negotiateContractAndGetData(this.providerUrl, this.assetId, this.providerName).subscribe({
           next: result => this.data = result,
           error: (e) => {
-            if (this.destinationUrl) {
+            if (this.providerName) {
               this.addLogMessage("Negotiate: New output received. Please check the data tab.");
               console.log(e);
               this.data = e.error.text;
