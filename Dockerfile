@@ -1,5 +1,5 @@
 # Stage 1: Compile and Build angular codebase
-FROM node:lts as build
+FROM node:lts AS build
 
 WORKDIR /app
 COPY ./ /app/
